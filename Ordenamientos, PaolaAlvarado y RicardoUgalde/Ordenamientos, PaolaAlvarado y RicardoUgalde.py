@@ -42,6 +42,7 @@ def insercionDirecta(lista,tam):
       lista[j+1] = lista[j]
       j=j-1
     lista[j+1]=v
+  return lista
 
 def selectionsort(lista,tam):
   for i in range(0,tam-1):
@@ -52,6 +53,7 @@ def selectionsort(lista,tam):
     aux=lista[min]
     lista[min]=lista[i]
     lista[i]=aux
+  return lista
 
 #############################SHELL###################################
 

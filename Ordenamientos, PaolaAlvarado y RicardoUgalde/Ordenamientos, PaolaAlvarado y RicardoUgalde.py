@@ -9,7 +9,7 @@ Radix
 Heap-Heapsort
 Shake
 """
-import csv
+import ast
   # Metodos
 def ordenamientoBurbuja(lista,tam):
   for i in range(1,tam):
@@ -18,6 +18,7 @@ def ordenamientoBurbuja(lista,tam):
         k = lista[j+1]
         lista[j+1] = lista[j]
         lista[j] = k;
+  return lista
 
 def ordenShell(lista,tam):
   inc=1
@@ -31,6 +32,7 @@ def ordenShell(lista,tam):
           j=j-inc
         lista[j]=temp
       inc=inc/2
+  return lista
 
 def insercionDirecta(lista,tam):
   for i in range(1,tam):
@@ -69,21 +71,78 @@ def mainloop():
     print("")
     
     if respuesta == "1":
-      while True:
         print("Usted seleccionó el método: Burbuja")
-        print("Digite la lista encerrada entre []:")
+        print("Digite los numeros de la lista:")
+        print("O digite \"s\" para salir.")
         lista = input()
-        print("")
+        lista = lista.split(",")
         
-        print("Digite el tamaño de las lista:")
-        tam = input()
-        print("")        
-
-        if lista == "s" or lista == "S" or tam == "s" or tam == "S":
-          break
+        if "s" in lista or "S" in lista:
+          pass
 
         else:
-          ordenamientoBurbuja(lista,tam)
+          lista = list(map(int,lista))
+          tam= len(lista)
+          result = ordenamientoBurbuja(lista,tam)
+          print("La lista ordenada sería:")
+          print(result)
+          print("")
+
+    if respuesta == "2":
+        print("Usted seleccionó el método: SelectionSort")
+        print("Digite los numeros de la lista:")
+        print("O digite \"s\" para salir.")
+        lista = input()
+        lista = lista.split(",")
+        
+        if "s" in lista or "S" in lista:
+          pass
+
+        else:
+          lista = list(map(int,lista))
+          tam= len(lista)
+          result = selectionsort(lista,tam)
+          print("La lista ordenada sería:")
+          print(result)
+          print("")
+
+    if respuesta == "3":
+        print("Usted seleccionó el método: InsercionDirecta")
+        print("Digite los numeros de la lista:")
+        print("O digite \"s\" para salir.")
+        lista = input()
+        lista = lista.split(",")
+        
+        if "s" in lista or "S" in lista:
+          pass
+
+        else:
+          lista = list(map(int,lista))
+          tam= len(lista)
+          result = insercionDirecta(lista,tam)
+          print("La lista ordenada sería:")
+          print(result)
+          print("")
+
+    if respuesta == "4":
+        print("Usted seleccionó el método: OrdenShell")
+        print("Digite los numeros de la lista:")
+        print("O digite \"s\" para salir.")
+        lista = input()
+        lista = lista.split(",")
+        
+        if "s" in lista or "S" in lista:
+          pass
+
+        else:
+          lista = list(map(int,lista))
+          tam= len(lista)
+          result = ordenShell(lista,tam)
+          print("La lista ordenada sería:")
+          print(result)
+          print("")
+      
+          
           
     if respuesta == "s" or respuesta == "S":
       break

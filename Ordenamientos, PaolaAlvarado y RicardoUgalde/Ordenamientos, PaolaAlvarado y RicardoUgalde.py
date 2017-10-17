@@ -6,7 +6,7 @@ Paola Alvarado y Ricardo Ugalde Gómez
 #Inserción
 #Shell
 #Radix
-Heap-Heapsort
+#Heap-Heapsort
 Shake
 """
 import ast
@@ -83,28 +83,70 @@ def radixsort( aList ):
     placement *= RADIX
   return aList
 
-#Head sort
-def swap(i, j):                    
-    sqc[i], sqc[j] = sqc[j], sqc[i] 
-def heapify(end,i):   
-    l=2 * i + 1  
-    r=2 * (i + 1)   
-    max=i   
-    if l < end and sqc[i] < sqc[l]:   
-        max = l   
-    if r < end and sqc[max] < sqc[r]:   
-        max = r   
-    if max != i:   
-        swap(i, max)   
-        heapify(end, max)   
-def heap_sort():     
-    end = len(sqc)   
-    start = end // 2 - 1 # use // instead of /
-    for i in range(start, -1, -1):   
-        heapify(end, i)   
-    for i in range(end-1, 0, -1):   
-        swap(i, 0)   
-        heapify(i, 0)
+#Heap sort
+def swap(a, i, j):
+  a[i], a[j] = a[j], a[i]  
+def is_heap(a):
+  n = 0
+  m = 0
+  while True:
+    for i in [0, 1]:
+      m += 1
+      if m >= len(a):
+        return True
+      if a[m] > a[n]:
+        return False
+    n += 1   
+def sift_down(a, n, max):
+  while True:
+    biggest = n
+    c1 = 2*n + 1
+    c2 = c1 + 1
+    for c in [c1, c2]:
+      if c < max and a[c] > a[biggest]:
+        biggest = c
+    if biggest == n:
+      return
+    swap(a, n, biggest)
+    n = biggest
+def heapify(a):
+  i = len(a) // 2 - 1
+  max = len(a)
+  while i >= 0:
+    sift_down(a, i, max)
+    i -= 1
+def heapsort(a):
+  heapify(a)
+  j = len(a) - 1
+  while j > 0:
+    swap(a, 0, j)
+    sift_down(a, 0, j)
+    j -= 1
+  return a
+#Shake
+def shakerSort (arr,n):
+  left=0
+  right=n-1
+  k=n
+  while True:
+    for j in range (right,left,-1):  #de derecha a izquierda
+      if (arr[j]<arr[j-1]):
+        temp=arr[j]
+        arr[j]=arr[j-1]
+        arr[j-1]=temp
+        k=j
+    left=k
+
+    for j in range (left,right):  #de izquierda a derecha
+      if (arr[j]>arr[j+1]):
+        temp= arr[j]
+        arr[j]=arr[j+1]
+        arr[j+1]=temp
+        k=j
+    right=k
+    if (left>=right):
+      break
+  return arr
 
 #############################SHELL###################################
 
@@ -226,12 +268,27 @@ def mainloop():
         else:
           lista = list(map(int,lista))
           #tam= len(lista)
-          sqc = lista
-          heap_sort()
-          #print(sqc)
-          #result = radixsort(lista)
+          result = heapsort(lista)
           print("La lista ordenada sería:")
-          print(sqc)
+          print(result)
+          print("")
+          
+    if respuesta == "7":
+        print("Usted seleccionó el método: Shaker")
+        print("Digite los numeros de la lista:")
+        print("O digite \"s\" para salir.")
+        lista = input()
+        lista = lista.split(",")
+        
+        if "s" in lista or "S" in lista:
+          pass
+
+        else:
+          lista = list(map(int,lista))
+          tam= len(lista)
+          result = shakerSort(lista,tam)
+          print("La lista ordenada sería:")
+          print(result)
           print("")
       
           

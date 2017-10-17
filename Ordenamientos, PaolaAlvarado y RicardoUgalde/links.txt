@@ -1,0 +1,4 @@
+https://gist.github.com/showell/1418901
+
+https://stackoverflow.com/questions/23049650/python-loop-of-radix-sort
+https://prezi.com/3mtc9xohrzh5/ordenamiento-por-el-metodo-de-la-sacudida-shaker-sort/
